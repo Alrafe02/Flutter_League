@@ -25,6 +25,7 @@ class MatchItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    inspect(summonerInfo);
     return InkWell(
       // When the user taps on this widget, navigate to the MatchInfoPage and pass along some parameters
       onTap: () async {
@@ -136,7 +137,6 @@ class MatchItem extends StatelessWidget {
   }
 
   Row _buildPlayerItems() {
-    inspect(matchHistory);
     return Row(
       children: [
         // Loop through each item the player had
