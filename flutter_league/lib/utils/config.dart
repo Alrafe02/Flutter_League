@@ -1,9 +1,10 @@
 import 'package:flutter_riot_api/utils/riotdata_formatter.dart';
+import '../apikey.dart'; // import it here
 
 // Defining a Config class
 class Config {
   // Static string variable to store the Riot Games API key
-  static String apikey = "<API-KEY>";
+  static String apikey = tmdbApiKey;
 
   // Static string variable to store the base URL for API requests
   static String apiUrl = "https://$currentServer.api.riotgames.com/lol/";

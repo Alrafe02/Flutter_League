@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riot_api/color_palette.dart';
 import 'package:flutter_riot_api/model/summoner.dart';
@@ -219,6 +221,7 @@ class MatchHistoryPage extends StatelessWidget {
               image: AssetImage("assets/ranks/$rankTier.png"),
             ),
           ),
+          
         ),
         const SizedBox(width: 8.0),
         Column(

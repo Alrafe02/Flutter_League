@@ -14,6 +14,8 @@ void main() {
   );
 }
 
+//TODO:  Tengo q actualizar los items desde aqui -> https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/
+//TODO: O desde aqui -> http://ddragon.leagueoflegends.com/cdn/13.20.1/img/item/1001.png
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 

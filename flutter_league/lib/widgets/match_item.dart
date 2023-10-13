@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riot_api/color_palette.dart';
 import 'package:flutter_riot_api/model/match_preview.dart';
@@ -133,6 +136,7 @@ class MatchItem extends StatelessWidget {
   }
 
   Row _buildPlayerItems() {
+    inspect(matchHistory);
     return Row(
       children: [
         // Loop through each item the player had
@@ -150,6 +154,21 @@ class MatchItem extends StatelessWidget {
                         image: AssetImage(
                             "assets/items/${matchHistory.playerStats.items[i]}.png"),
                       ),
+                    ),
+                    child: Image(
+                      image: NetworkImage(
+                          "http://ddragon.leagueoflegends.com/cdn/13.20.1/img/item/${matchHistory.playerStats.items[i]}.png"),
+                      errorBuilder: (BuildContext context, Object error,
+                          StackTrace? stackTrace) {
+                        // Si la imagen de activos no se encuentra, carga una imagen desde una URL
+                        if (kDebugMode) {
+                          print("La api ha fallado");
+                        }
+                        return Image(
+                          image: AssetImage(
+                              "assets/items/${matchHistory.playerStats.items[i]}.png"),
+                        );
+                      },
                     ),
                   )
                 // If the item is a default empty item slot, display a blank circle
@@ -292,6 +311,6 @@ class MatchItem extends StatelessWidget {
       2000: 'TFT',
       2010: 'TFT Ranked',
     };
-    return gameModes[queueId]!; //TODO nincs ilyen
+    return gameModes[queueId]!;
   }
 }

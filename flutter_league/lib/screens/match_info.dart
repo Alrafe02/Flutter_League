@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riot_api/color_palette.dart';
 import 'package:flutter_riot_api/model/match.dart';
@@ -280,10 +281,21 @@ class MatchInfoPage extends StatelessWidget {
                       color: Colors.blue,
                       width: lineWidth,
                     ),
-                    image: DecorationImage(
-                      image: AssetImage(
-                          "assets/champions/${getChampionNameById(playerStat.championId)}.png"),
-                    ),
+                  ),
+                  child: Image(
+                    image: NetworkImage(
+                        "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${playerStat.championId}.png"),
+                    errorBuilder: (BuildContext context, Object error,
+                        StackTrace? stackTrace) {
+                      // Si la imagen de activos no se encuentra, carga una imagen desde una URL
+                      if (kDebugMode) {
+                        print("La api ha fallado");
+                      }
+                      return Image(
+                        image: AssetImage(
+                            "assets/champions/${getChampionNameById(playerStat.championId)}.png"),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(width: 10),

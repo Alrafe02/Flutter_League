@@ -16,6 +16,10 @@ class HomeScreen extends StatelessWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
   static final ColorPalette colorPalette = ColorPalette();
 
+  Widget vistaPrincipal(BuildContext context) {
+    return Stack();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Retrieve the width and height of the screen
@@ -36,6 +40,44 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       // Build the app bar using the _buildAppBar() method
       appBar: _buildAppBar(context),
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('ImFamous'),
+            ),
+            ListTile(
+              title: const Text('Inicio'),
+              onTap: () {
+                // Update the state of the app
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Ver info usuario'),
+              onTap: () {
+                // Update the state of the app
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Aun no se q poner'),
+              onTap: () {
+                // Update the state of the app
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           // Add a GestureDetector widget for handling taps
@@ -54,17 +96,13 @@ class HomeScreen extends StatelessWidget {
               curve: Curves.easeInOut,
               child: SingleChildScrollView(
                 child: IgnorePointer(
-                  // Ignore pointer events if the dropdown menu is open
                   ignoring: context.watch<HomeProvider>().dropdownOpen,
                   child: Column(
                     children: [
                       const SizedBox(
                         height: 20,
                       ),
-                      // Build the search bar using the _buildSearchBar() method
                       _buildSearchBar(context, width),
-                      // If the HomeProvider is currently loading, display a progress indicator
-                      // Otherwise, display the summoner information using the _buildSummonerInfo() method
                       context.read<HomeProvider>().isLoading == true
                           ? const Padding(
                               padding: EdgeInsets.only(top: 20.0),
@@ -324,8 +362,8 @@ class HomeScreen extends StatelessWidget {
   }
 
   final List<String> options = [
-    "eun1",
     "euw1",
+    "eun1",
     "jp1",
     "br1",
     "kr",
